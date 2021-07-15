@@ -14,7 +14,7 @@ export interface ITaskCard {
     dateStart: Date; //дата начала
     dateEnd: Date; // дата завершения
     statusTask: string, // статус задач
-    subTask?: ReadonlyArray<TSubTask>,  // количество подзадач
+    subTask?: Array<TSubTask>,  // количество подзадач
     closeType?: string, // как завершена задача
 }
-export type TTaskCard = ReadonlyArray<ITaskCard>
+export type TTaskCard = Array<ITaskCard>
