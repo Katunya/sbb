@@ -1,12 +1,5 @@
-import {ITaskCard, TTaskCard} from "./types";
+import { TTaskCard} from "./types";
 
-const randomData = (from: number, to: number) => {
-    const { floor, random, ceil } = Math;
-    const _from = ceil(from);
-    const _to = floor(to);
-    return () => floor(random() * (_to - _from + 1) + _from);
-};
-const r1 = randomData(1, 10000);
 
 export const taskCard: TTaskCard = [
     {
@@ -21,19 +14,19 @@ export const taskCard: TTaskCard = [
         statusTask: 'В работе',
         subTask: [
             {
-                id: 1,
+                id: 1213,
                 status: 'В работе',
             },
             {
-                id: 2,
+                id: 2232,
                 status: 'Завершена',
             },
             {
-                id: 3,
+                id: 2133,
                 status: 'Новая',
             },
             {
-                id: 4,
+                id: 4213,
                 status: 'Новая',
             }
         ]

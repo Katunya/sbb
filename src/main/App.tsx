@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import React from "react";
 import AllTasks from "./Tasks/AllTasks";
-import { Filter } from './SidebarFilter/Filter';
+import Filter from './SidebarFilter/Filter';
 
 const Container = styled.div`
     height: 100%;
@@ -25,7 +25,6 @@ const NavBar = styled.div`
 `;
 
 export default () => {
-
     return (
       <Container>
         <Section>

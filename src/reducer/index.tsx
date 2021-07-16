@@ -1,5 +1,6 @@
 import {taskCard} from "../core/data";
 import {byField} from "../utils/helpers";
+import { createSlice, PayloadAction } from 'reduxjs/toolkit'
 
 const initialState = {
     field: 'statusTask',
@@ -9,20 +10,19 @@ const initialState = {
     typeTask: '',
 };
 
-// @ts-ignore
 const appReducers = (state = initialState, {type, payload}) => {
     switch (type) {
         case 'FIELD_REQUEST' : {
             return {
                 ...state,
-                taskCard: state.taskCard.sort(byField(payload)),
+                taskCard: [...taskCard.sort(byField(payload))],
                 field: payload,
             }
         }
         case 'PROCESS_STATUS_REQUEST' : {
             return {
                 ...state,
-                taskCard: state.taskCard.sort(byField(payload)),
+                taskCard:  [...taskCard.sort(byField(payload))],
                 status: payload,
             }
         }

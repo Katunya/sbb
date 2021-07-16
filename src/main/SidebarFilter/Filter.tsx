@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components";
 import TaskFilterSelect from './/TaskFilterSelect'
-import {connect} from "react-redux";
 import { TaskGroupInput } from "./TaskGroupInput";
+import { connect, ConnectedProps } from 'react-redux'
 
 const TaskFilterGroup = styled.div`
 `;
@@ -41,7 +41,24 @@ interface IFilter {
     status: string
 }
 
-export const Filter = (props: any) => {
+const mapStateToProps = (state: IFilter) => {
+    return {
+        field: state.field,
+        status: state.status,
+    }
+}
+
+
+const connector = connect(mapStateToProps)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+type Props = PropsFromRedux & {
+
+}
+
+
+export const Filter = (props: Props) => {
     const {field, status} = props;
 
     return(
@@ -69,11 +86,5 @@ export const Filter = (props: any) => {
     </React.Fragment>
     )
 }
-const mapStateToProps = (state: { field: string, status: string }) => {
-    return {
-        field: state.field,
-        status: state.status,
-    }
-}
 
-export default connect(mapStateToProps)(Filter);
+export default connector(Filter)
