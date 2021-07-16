@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import {Task} from "./Task";
 import {connect} from "react-redux";
-import {setGroupRequest} from "../../actions";
-import {Group} from "../SidebarFilter/Group";
+import React from "react";
+import {ITaskCard, TTaskCard} from "../../core/types";
 
 const TaskList= styled.div`
   padding: 20px;
@@ -43,20 +43,24 @@ const TaskItem = styled.div`
   padding-left: 20px;
 `;
 
-const TaskComponent = (props : any) => {
+export interface IAllTask {
+    taskCard : any
+}
+
+const AllTasks = (props : any  ) => {
     const { taskCard} = props
 
-  return (
+    return (
       <TaskListItems>
           <TaskItem>
       <TaskList>
           <TaskListHeader>
               <MainTitle></MainTitle>
               <TaskListNew>
-                  Новых: вава
+                  Новых: {taskCard.length}
               </TaskListNew>
               <TaskListFailed>
-                  Просроченных: gfgfgf
+                  Просроченных: {taskCard.length}
               </TaskListFailed>
           </TaskListHeader>
           <TaskListItems>
@@ -68,10 +72,10 @@ const TaskComponent = (props : any) => {
   );
 };
 
-const mapStateToProps = (state: { taskCard: Array<; }) => {
+const mapStateToProps = (state: { taskCard: any; }) => {
     return {
         taskCard: state.taskCard
     }
 }
 
-export default connect(mapStateToProps, setGroupRequest)( TaskComponent);
+export default connect(mapStateToProps)( AllTasks);

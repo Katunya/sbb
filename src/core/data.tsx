@@ -59,7 +59,7 @@ export const taskCard: TTaskCard = [
         dateStart: new Date(2021, 3, 1),
         dateEnd: new Date(2021, 3, 12),
         statusTask: 'Завершена',
-        closeType: 'Автоматически'
+        closeType: 'automatic'
     },
     {
         id: 4,
@@ -71,7 +71,7 @@ export const taskCard: TTaskCard = [
         dateStart: new Date(2021, 4, 1),
         dateEnd: new Date(2021, 5, 12),
         statusTask: 'В работе',
-        closeType: 'Вручную'
+        closeType: 'manual'
     },
     {
         id: 5,
@@ -83,7 +83,7 @@ export const taskCard: TTaskCard = [
         dateStart: new Date(2021, 5, 2),
         dateEnd: new Date(2021, 6, 12),
         statusTask: 'В работе',
-        closeType: 'Вручную'
+        closeType: 'manual'
 
     },
     {

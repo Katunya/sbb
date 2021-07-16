@@ -6,6 +6,11 @@ export function getCountByKey(objects, key, value) {
     return objects.reduce((count, obj) => obj[key] === value ? count + 1 : count, 0);
 }
 
+
+export const  byField = (field) => {
+    return (a, b) => a[field] > b[field] ? 1 : -1;
+}
+
 export function shallowEqual(objA, objB) {
     if (objA === objB) {
         return true;
