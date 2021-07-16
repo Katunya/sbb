@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import {Task} from "./Task";
 import {connect} from "react-redux";
 import React from "react";
-import {ITaskCard, TTaskCard} from "../../core/types";
+import Task from "./Task";
 
 const TaskList= styled.div`
   padding: 20px;
@@ -64,7 +63,7 @@ const AllTasks = (props : any  ) => {
               </TaskListFailed>
           </TaskListHeader>
           <TaskListItems>
-              <Task taskCard={taskCard}/>
+              <Task/>
           </TaskListItems>
       </TaskList></TaskItem>
       </TaskListItems>
@@ -73,6 +72,7 @@ const AllTasks = (props : any  ) => {
 };
 
 const mapStateToProps = (state: { taskCard: any; }) => {
+    debugger
     return {
         taskCard: state.taskCard
     }

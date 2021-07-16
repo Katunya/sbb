@@ -3,7 +3,7 @@ import {byField} from "../utils/helpers";
 
 const initialState = {
     field: 'statusTask',
-    processStatus: 'all',
+    status: 'all',
     closeType: '',
     taskCard: taskCard,
     typeTask: '',
@@ -19,11 +19,25 @@ const appReducers = (state = initialState, {type, payload}) => {
                 field: payload,
             }
         }
-        case 'FILTER_REQUEST' : {
+        case 'PROCESS_STATUS_REQUEST' : {
             return {
                 ...state,
-                taskCard: taskCard.sort(byField('statusTask')),
-                processStatus: payload,
+                taskCard: state.taskCard.sort(byField(payload)),
+                status: payload,
+            }
+        }
+        case 'CLOSE_REQUEST': {
+            return {
+                ...state,
+                taskCard: taskCard.filter(item => item.closeType === payload),
+                closeType: payload
+            }
+        }
+        case 'TYPE_TASK_REQUEST': {
+            return {
+                ...state,
+                taskCard: taskCard.filter(item => item.type === payload),
+                typeTask: payload
             }
         }
         default:

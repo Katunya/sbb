@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import {ITaskCard} from "../../core/types";
+import {connect} from "react-redux";
+import {compose} from "redux";
 
 function getBadgeType(type: any) {
     switch (type) {
@@ -112,22 +114,20 @@ const TaskContainer = styled.div`
 `;
 
 export const Task = (props: any) => {
-    const { taskCard } = props;
+    const { taskCard} = props;
 
-    const hasSubtasks = taskCard.subtasks && taskCard.subtasks.length > 0;
-
-    const foo =() => {
-       return taskCard.map((item: ITaskCard, index: number) => {
+    debugger
+        return taskCard.map((item: ITaskCard, index: number) => {
             return (
-                <TaskMain>
+                <TaskMain key={item.id}>
                     <TaskContainer>
-                    <TaskId>id: {item.id}</TaskId>
-                    <TaskType>Поручение</TaskType>
-                   <TaskBadge>
-                       <BadgeType>
-                           {item.type}
-                       </BadgeType>
-                   </TaskBadge>
+                        <TaskId>id: {item.id}</TaskId>
+                        <TaskType>Поручение</TaskType>
+                        <TaskBadge>
+                            <BadgeType>
+                                {item.type}
+                            </BadgeType>
+                        </TaskBadge>
                     </TaskContainer>
                     <TaskTitleContainer>
                         <TaskTitle>{item.title}</TaskTitle>
@@ -143,17 +143,12 @@ export const Task = (props: any) => {
                 </TaskMain>
             )
         })
-    }
-    return (
-        <div>
-            {foo()}
-    {
-        hasSubtasks && (
-            <div className="Task-Subtasks">
-                <SubTasks/>
-            </div>
-        )
-    }
-        </div>
-    )
 }
+
+const mapStateToProps = (state: { taskCard: any; }) => {
+    return {
+        taskCard: state.taskCard
+    }
+}
+
+export default connect(mapStateToProps)(Task);

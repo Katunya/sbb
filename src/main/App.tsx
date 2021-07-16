@@ -25,6 +25,7 @@ const NavBar = styled.div`
 `;
 
 export default () => {
+
     return (
       <Container>
         <Section>

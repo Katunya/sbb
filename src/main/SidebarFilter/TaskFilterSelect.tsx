@@ -1,7 +1,5 @@
 import React from 'react';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import {connect} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {ITypeGroup} from "./Filter";
 
 interface ITaskFilterSelect {
@@ -13,34 +11,34 @@ interface ITaskFilterSelect {
 }
 
 const TaskFilterSelect = (props: ITaskFilterSelect) =>  {
-    const {type, data, placeholder, closeType, typeTask} = props;
+    const {type, data} = props;
 
+    const dispatch = useDispatch();
 
     const [getValue, setValue] = React.useState('');
 
-    const handleChange = (type: string) => {
+    const handleChange = (x: React.ChangeEvent<HTMLSelectElement>) => {
         switch (type) {
             case 'close' : {
-                setValue(closeType)
+                setValue(x.target.value)
+                dispatch({type: 'CLOSE_REQUEST', payload: (x.target.value)})
                 break;
             }
             case 'typeTask' : {
-                setValue(typeTask)
+                setValue(x.target.value)
+                dispatch({type: 'TYPE_TASK_REQUEST', payload: (x.target.value)})
                 break;
             }
         }
     }
     debugger
     return (
-        <Select value={getValue}
-                fullWidth
-                displayEmpty
-                onChange={() => handleChange} >
-            { data.map((item, index) => {
-                    return <MenuItem value={item.value} key={index} >{item.name}</MenuItem>
-                })
+        <select value={getValue}
+                onChange={handleChange} >
+            {data.map((item, index) => {
+                return <option value={item.value} key={index} >{item.name}</option>})
             }
-        </Select>
+        </select>
     );
 }
 

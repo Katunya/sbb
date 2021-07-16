@@ -2,12 +2,10 @@ import React from "react"
 import styled from "styled-components";
 import TaskFilterSelect from './/TaskFilterSelect'
 import {connect} from "react-redux";
-import {fieldRequest, processStatusRequest} from "../../actions";
 import { TaskGroupInput } from "./TaskGroupInput";
 
 const TaskFilterGroup = styled.div`
 `;
-
 
 export interface ITypeGroup {
     name: string,
@@ -38,19 +36,24 @@ const closeType: Array<ITypeGroup>  = [
     { name: 'Автоматически', value: 'automatic' },
 ];
 
+interface IFilter {
+    field: string,
+    status: string
+}
+
 export const Filter = (props: any) => {
-    const {field, processStatus} = props;
+    const {field, status} = props;
 
     return(
     <React.Fragment>
         <TaskFilterGroup> Группировка по:</TaskFilterGroup>
         <TaskGroupInput field={field}
-                        processStatus={processStatus}
+                        status={status}
                         data={fields}
                         typeField={'groupField'}/>
         <TaskFilterGroup>По статусу </TaskFilterGroup>
         <TaskGroupInput field={field}
-                        processStatus={processStatus}
+                        status={status}
                         data={processStatusData}
                         typeField={'groupProcess'}/>
         <TaskFilterGroup>Как завершена задача</TaskFilterGroup>
@@ -66,11 +69,11 @@ export const Filter = (props: any) => {
     </React.Fragment>
     )
 }
-const mapStateToProps = (state: { field: string, processStatus: string }) => {
+const mapStateToProps = (state: { field: string, status: string }) => {
     return {
         field: state.field,
-        processStatus: state.processStatus,
+        status: state.status,
     }
 }
 
-export default connect(mapStateToProps, fieldRequest, processStatusRequest)(Filter);
+export default connect(mapStateToProps)(Filter);
