@@ -1,43 +1,43 @@
 import {taskCard} from "../core/data";
-import {byField} from "../utils/helpers";
-import { createSlice, PayloadAction } from 'reduxjs/toolkit'
+import {byField} from "../utils";
+import {Reducer} from "redux";
 
 const initialState = {
-    field: 'statusTask',
-    status: 'all',
-    closeType: '',
+    field: 'type',
+    statusTask: 'Все',
+    closeType: 'all',
     taskCard: taskCard,
-    typeTask: '',
+    type: 'Все',
 };
 
-const appReducers = (state = initialState, {type, payload}) => {
+const appReducers: Reducer = (state = initialState, {type, payload}) => {
     switch (type) {
         case 'FIELD_REQUEST' : {
             return {
                 ...state,
-                taskCard: [...taskCard.sort(byField(payload))],
+                taskCard: [...state.taskCard.sort(byField(payload))],
                 field: payload,
             }
         }
         case 'PROCESS_STATUS_REQUEST' : {
             return {
                 ...state,
-                taskCard:  [...taskCard.sort(byField(payload))],
-                status: payload,
+                taskCard:  payload === initialState.statusTask ? initialState.taskCard :  [...initialState.taskCard.filter((item: { statusTask: string; }) => item.statusTask === payload)],
+                statusTask: payload,
             }
         }
         case 'CLOSE_REQUEST': {
             return {
                 ...state,
-                taskCard: taskCard.filter(item => item.closeType === payload),
+                taskCard:  payload === 'all' ? initialState.taskCard  :  [...initialState.taskCard.filter((item: any) => item.statusTask === payload)],
                 closeType: payload
             }
         }
         case 'TYPE_TASK_REQUEST': {
             return {
                 ...state,
-                taskCard: taskCard.filter(item => item.type === payload),
-                typeTask: payload
+                taskCard:payload === 'Все'  ?  initialState.taskCard :  [...initialState.taskCard.filter((item: { type: string; }) => item.type === payload)],
+                type: payload
             }
         }
         default:
@@ -45,4 +45,4 @@ const appReducers = (state = initialState, {type, payload}) => {
     }}
 
 
-export default appReducers
+export default appReducers;

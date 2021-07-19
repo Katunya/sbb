@@ -3,10 +3,10 @@ import { TTaskCard} from "./types";
 
 export const taskCard: TTaskCard = [
     {
-        id: 1,
+        id: 12345,
         type: 'Совещание отдела',
         title: 'Оценка инвестиционной привлекательности проекта застройки',
-        creator: 'Зарембо-Годзяцкий',
+        creator: 'Александр Александров',
         performers: 'Зарембо-Годзяцкий',
         created:  new Date(2021, 1, 1),
         dateStart: new Date(2021, 1, 1),
@@ -32,7 +32,7 @@ export const taskCard: TTaskCard = [
         ]
     },
     {
-        id: 2,
+        id: 12346,
         type: 'Встреча',
         title: 'Встреча с инвесторами',
         creator: 'Зарембо-Годзяцкий',
@@ -43,10 +43,10 @@ export const taskCard: TTaskCard = [
         statusTask: 'Новая',
     },
     {
-        id: 3,
+        id: 12347,
         type: 'Конференция',
         title: 'Встреча с инвесторами',
-        creator: 'Зарембо-Годзяцкий',
+        creator: 'Никита Никитин',
         performers: 'Зарембо-Годзяцкий',
         created: new Date(2021, 3, 1),
         dateStart: new Date(2021, 3, 1),
@@ -55,7 +55,7 @@ export const taskCard: TTaskCard = [
         closeType: 'automatic'
     },
     {
-        id: 4,
+        id: 12348,
         type: 'Встреча',
         title: 'Встреча с консультантами',
         creator: 'Зарембо-Годзяцкий',
@@ -67,11 +67,11 @@ export const taskCard: TTaskCard = [
         closeType: 'manual'
     },
     {
-        id: 5,
+        id: 12349,
         type: 'Совещание отдела',
         title: 'Обсуждение квартальных показателей',
         creator: 'Зарембо-Годзяцкий',
-        performers: 'Зарембо-Годзяцкий',
+        performers: 'Петр Петров',
         created: new Date(2021, 5, 1),
         dateStart: new Date(2021, 5, 2),
         dateEnd: new Date(2021, 6, 12),
@@ -80,11 +80,11 @@ export const taskCard: TTaskCard = [
 
     },
     {
-        id: 6,
+        id: 12350,
         type: 'Конференция',
         title: 'Обсуждение',
         creator: 'Зарембо-Годзяцкий',
-        performers: 'Зарембо-Годзяцкий',
+        performers: 'Иван Иванов',
         created: new Date(2021, 6, 1),
         dateStart: new Date(2021, 6, 2),
         dateEnd: new Date(2021, 7, 12),

@@ -3,16 +3,11 @@ import React from "react";
 import AllTasks from "./Tasks/AllTasks";
 import Filter from './SidebarFilter/Filter';
 
-const Container = styled.div`
-    height: 100%;
-    display: grid;
-`;
 
-const Section = styled.div`
+const Container = styled.div`
   display: grid;
-  grid-template-columns: minmax(170px,350px) minmax(540px, 1fr ) minmax(240px, 1fr);
+  grid-template: auto / minmax(170px,300px) 1fr;
   height: 100%;
-  position: relative;
 `;
 
 const SidebarFilter  =styled.div`
@@ -22,18 +17,47 @@ const SidebarFilter  =styled.div`
 `;
 
 const NavBar = styled.div`
+  height: 1000px;
+  background: linear-gradient(180deg, #272D30 0%, #375767 100%);
 `;
+
+const HeaderContainer = styled.div`
+  background: #E5EEF0;
+  padding: 10px 15px 10px;
+`;
+
+const HeaderTitle  = styled.div`
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: -0.5px;
+  color: #212121;
+`;
+const MainContainer = styled.div`
+  grid-auto-rows: 50px 1fr ;
+`;
+const ContainerNew = styled.div`
+  display: grid;
+  grid-template-columns: minmax(800px, 1fr ) minmax(240px, 1fr);
+`;
+
 
 export default () => {
     return (
-      <Container>
-        <Section>
+        <Container>
           <NavBar/>
-          <AllTasks/>
-          <SidebarFilter>
-              <Filter/>
-          </SidebarFilter>
-        </Section>
-      </Container>
+          <MainContainer>
+          <HeaderContainer>
+              <HeaderTitle>Создание задачи</HeaderTitle>
+          </HeaderContainer>
+              <ContainerNew>
+                  <AllTasks/>
+                  <SidebarFilter>
+                      <Filter/>
+                  </SidebarFilter>
+              </ContainerNew>
+          </MainContainer>
+        </Container>
   );
 }

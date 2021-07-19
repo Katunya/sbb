@@ -1,20 +1,20 @@
 import styled from "styled-components";
-import {connect} from "react-redux";
+import { useSelector} from "react-redux";
 import React from "react";
 import Task from "./Task";
+import {getCountByKey} from "../../utils";
 
 const TaskList= styled.div`
-  padding: 20px;
 `;
 
 const TaskListHeader = styled.div`
-  display: flex;
-  padding: 18px 0;
-  line-height: 24px;
+  display: grid;
+  padding-top: 24px;
+  padding-bottom: 18px;
+  grid-template-columns: 500px 100px 200px;
 `;
 
 const MainTitle= styled.span`
-  font-weight: bold;
 `;
 
 const TaskListNew= styled.span`
@@ -36,46 +36,39 @@ const TaskListFailed= styled.span`
 
 const TaskListItems= styled.div`
   margin-bottom: 20px;
+  margin-left: 25px;
 `;
 
 const TaskItem = styled.div`
-  padding-left: 20px;
+  padding-left: 15px;
 `;
 
-export interface IAllTask {
-    taskCard : any
-}
+const AllTasks = ( ) => {
 
-const AllTasks = (props : any  ) => {
-    const { taskCard} = props
+    const data = useSelector((state:  any) => state.taskCard);
+
+    const  getNewTaskCount = (tasks: any[]) => {
+        return getCountByKey(tasks, 'statusTask', 'Новая')
+    }
+
+    const getFailedTasksCount = (tasks: any[]) => {
+        return tasks.reduce((count, task) => task.dateEnd < new Date() ? count + 1 : count, 0);
+    }
+
+    const newTaskCount = React.useMemo(() => getNewTaskCount(data), [data])
 
     return (
-      <TaskListItems>
           <TaskItem>
-      <TaskList>
-          <TaskListHeader>
-              <MainTitle></MainTitle>
-              <TaskListNew>
-                  Новых: {taskCard.length}
-              </TaskListNew>
-              <TaskListFailed>
-                  Просроченных: {taskCard.length}
-              </TaskListFailed>
-          </TaskListHeader>
-          <TaskListItems>
-              <Task/>
-          </TaskListItems>
-      </TaskList></TaskItem>
-      </TaskListItems>
-
+              <TaskList>
+                  <TaskListHeader>
+                      <MainTitle><b>Поручения</b> (ручные)</MainTitle>
+                      <TaskListNew>Новых: {newTaskCount}</TaskListNew>
+                      <TaskListFailed>Просроченных: {getFailedTasksCount(data)}</TaskListFailed>
+                  </TaskListHeader>
+                  <TaskListItems>
+                      <Task/>
+                  </TaskListItems>
+              </TaskList></TaskItem>
   );
 };
-
-const mapStateToProps = (state: { taskCard: any; }) => {
-    debugger
-    return {
-        taskCard: state.taskCard
-    }
-}
-
-export default connect(mapStateToProps)( AllTasks);
+export default  AllTasks;
